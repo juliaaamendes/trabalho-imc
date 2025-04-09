@@ -1,5 +1,6 @@
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, TextInput, Button, StyleSheet, TouchableNativeFeedback, Keyboard } from "react-native";
 import Result from "./Result";
+import Classification from './Classification';
 import { useState } from "react";
 
 const FormIMC = () => {
@@ -16,23 +17,26 @@ const FormIMC = () => {
     };
 
     return (
-        <View style={styles.formContainer}>
-            <TextInput style={styles.input}
-            placeholder="Peso (kg)"
-            keyboardType="numeric"
-            value={peso}
-            onChangeText={setPeso}
-            />
-            <TextInput
-            style={styles.input}
-            placeholder="Altura (cm)"
-            keyboardType="numeric"
-            value={altura}
-            onChangeText={setAltura}
-            />
-            <Button title="Cacular IMC" onPress={calcularIMC} />
-            {imc && <Result imc={imc} />}
-        </View>
+        <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.formContainer}>
+                <TextInput style={styles.input}
+                placeholder="Peso (kg)"
+                keyboardType="numeric"
+                value={peso}
+                onChangeText={setPeso}
+                />
+                <TextInput
+                style={styles.input}
+                placeholder="Altura (cm)"
+                keyboardType="numeric"
+                value={altura}
+                onChangeText={setAltura}
+                />
+                <Button title="Cacular IMC" onPress={calcularIMC} />
+                {imc && <Result imc={imc} />}
+                <Classification/>
+            </View>
+        </TouchableNativeFeedback>
     );
 };
 
